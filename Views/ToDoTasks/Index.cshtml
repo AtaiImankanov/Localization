@@ -1,4 +1,6 @@
-﻿@model  lavAspMvclast.ViewModels.TaskPageModel
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@model  lavAspMvclast.ViewModels.TaskPageModel
 
 @{
     ViewData["Title"] = "Index";
@@ -6,19 +8,19 @@
 
 <form method="get">
     <div class="form-inline form-group">
-    <label class="control-label"> Name </label>   
+    <label class="control-label"> @Localizer["Name"] </label>   
     @Html.TextBox("Name",Model.Name,htmlAttributes:new{@class="form-control"})
-    <label class="control-label"> By Word in Description </label>   
+    <label class="control-label"> @Localizer["WordInDesc"] </label>   
     @Html.TextBox("WordInDescription",Model.WordInDescription,htmlAttributes:new{@class="form-control"})
-    <label class="control-label"> Status </label>   
+    <label class="control-label"> @Localizer["Status"] </label>   
     @Html.TextBox("Status",Model.Status,htmlAttributes:new{@class="form-control"})
-    <label class="control-label"> Priority </label>   
+    <label class="control-label"> @Localizer["Priority"] </label>   
     @Html.TextBox("Priority",Model.Priority,htmlAttributes:new{@class="form-control"})
-    <label class="control-label"> From date </label>   
+    <label class="control-label"> @Localizer["FromDate"] </label>   
     <input asp-for="@Model.Form" name="From" class="form-control" />
-    <label class="control-label"> To date </label>   
+    <label class="control-label"> @Localizer["ToDate"] </label>   
     <input asp-for="@Model.To" name="To" class="form-control" />
-    <input type="submit" value="filter" class="btn btn-outline-danger" />
+    <input type="submit" value="@Localizer["Filter"]" class="btn btn-outline-danger" />
     </div>
 </form>
 
@@ -29,19 +31,19 @@
                <p>#</p>
             </th>
             <th>
-              <a asp-action="Index" asp-route-sortOrder="@ViewBag.NameSort"> Name</a>
+              <a asp-action="Index" asp-route-sortOrder="@ViewBag.NameSort"> @Localizer["Name"]</a>
             </th>
             <th>
-               <p>Description</p>
+               <p> @Localizer["Description"] </p>
             </th>
             <th>
-               <a asp-action="Index" asp-route-sortOrder="@ViewBag.PrioritySort"> Priority</a>
+               <a asp-action="Index" asp-route-sortOrder="@ViewBag.PrioritySort"> @Localizer["Priority"]</a>
             </th>
             <th>
-                <a asp-action="Index" asp-route-sortOrder="@ViewBag.DateSort"> Date created</a>
+                <a asp-action="Index" asp-route-sortOrder="@ViewBag.DateSort"> @Localizer["DateCreated"]</a>
             </th>
             <th>
-                <a asp-action="Index" asp-route-sortOrder="@ViewBag.StatusSort"> Status</a>
+                <a asp-action="Index" asp-route-sortOrder="@ViewBag.StatusSort"> @Localizer["Status"]</a>
             </th>
             <th></th>
         </tr>
@@ -61,15 +63,15 @@
             <td>
                     @if (item.Priority == 1)
                     {
-                       <p>low</p>
+                       <p>@Localizer["Low"]</p>
                     }
                     @if (item.Priority == 2)
                     {
-                       <p>Mid</p>
+                       <p>@Localizer["Mid"]</p>
                     }
                     @if (item.Priority == 3)
                     {
-                       <p>High</p>
+                       <p>@Localizer["High"]</p>
                     }
             </td>
             <td>
@@ -78,53 +80,53 @@
             <td>
                @if (item.Status == 1)
                     {
-                       <p>New</p>
+                       <p>@Localizer["New"]</p>
                     }
                     @if (item.Status == 2)
                     {
-                       <p>Open</p>
+                       <p>@Localizer["Open"]</p>
                     }
                     @if (item.Status == 3)
                     {
-                       <p>Close</p>
+                       <p>@Localizer["Close"]</p>
                     }
             </td>
             <td>
                     @if (1 == @ViewBag.AdminUserId)
                     {
-                        <a asp-action="Open" asp-controller="ToDoTasks" asp-route-id="@item.Id">Open  |</a>
-                        <a asp-action="Edit" asp-controller="ToDoTasks" asp-route-id="@item.Id">Edit  |</a>
-                        <a asp-action="Delete" asp-controller="ToDoTasks" asp-route-id="@item.Id">Delete  |</a>
-                        <a asp-action="Create" asp-controller="ToDoTasks" asp-route-id="@item.Id">Create  |</a>
-                        <a asp-action="Close" asp-controller="ToDoTasks" asp-route-id="@item.Id">Close  |</a>
-                        <a asp-action="Take" asp-controller="ToDoTasks" asp-route-id="@item.Id">Take  |</a>
-                        <a asp-action="Details" asp-controller="ToDoTasks" asp-route-id="@item.Id">Details  |</a>
+                        <a asp-action="Open" asp-controller="ToDoTasks" asp-route-id="@item.Id">@Localizer["Open"]  |</a>
+                        <a asp-action="Edit" asp-controller="ToDoTasks" asp-route-id="@item.Id">@Localizer["Edit"]  |</a>
+                        <a asp-action="Delete" asp-controller="ToDoTasks" asp-route-id="@item.Id">@Localizer["Delete"]  |</a>
+                        <a asp-action="Create" asp-controller="ToDoTasks" asp-route-id="@item.Id">@Localizer["Create"]  |</a>
+                        <a asp-action="Close" asp-controller="ToDoTasks" asp-route-id="@item.Id">@Localizer["Close"]  |</a>
+                        <a asp-action="Take" asp-controller="ToDoTasks" asp-route-id="@item.Id">@Localizer["Take"]  |</a>
+                        <a asp-action="Details" asp-controller="ToDoTasks" asp-route-id="@item.Id">@Localizer["Details"]  |</a>
                     }else{
                     @if (@ViewBag.UserId == item.CreaterId)
                     {
                         @if (item.Status == 1)
                         {
-                            <a asp-action="Open" asp-controller="ToDoTasks" asp-route-id="@item.Id">Open  |</a>
+                            <a asp-action="Open" asp-controller="ToDoTasks" asp-route-id="@item.Id">@Localizer["Open"]  |</a>
                         }
                         @if (item.Status == 2)
                         {
-                            <a asp-action="Take" asp-controller="ToDoTasks" asp-route-id="@item.Id">Take  |</a>
+                            <a asp-action="Take" asp-controller="ToDoTasks" asp-route-id="@item.Id">@Localizer["Take"]  |</a>
                         }
-                        <a asp-action="Edit" asp-route-id="@item.Id">Edit  |</a>
-                        <a asp-action="Delete" asp-route-id="@item.Id">Delete  |</a>
+                        <a asp-action="Edit" asp-route-id="@item.Id">@Localizer["Edit"]  |</a>
+                        <a asp-action="Delete" asp-route-id="@item.Id">@Localizer["Delete"]  |</a>
                     }
                     @if(@ViewBag.UserId == item.CompliterId)
                     {
   @if (item.Status != 1 && item.Status !=3)
                     {
-                        <a asp-action="Close" asp-controller="ToDoTasks" asp-route-id="@item.Id">Close  |</a> 
+                        <a asp-action="Close" asp-controller="ToDoTasks" asp-route-id="@item.Id">@Localizer["Close"]  |</a> 
                     }
                     }
                     @if(@ViewBag.UserId != item.CompliterId && @ViewBag.UserId != item.CreaterId)
                     {
                          @if (item.Status == 2)
                     {
-                       <a asp-action="Take" asp-controller="ToDoTasks" asp-route-id="@item.Id">Take  |</a> 
+                       <a asp-action="Take" asp-controller="ToDoTasks" asp-route-id="@item.Id">@Localizer["Take"]  |</a> 
                     }
                     }
 }
@@ -136,9 +138,9 @@
 </table>
 @if(Model.PageViewModel.HasPreviousPage)
 {
-    <a asp-action="Index" asp-route-page="@(Model.PageViewModel.PageNumber-1)" class="btn btn-outline-dark"><i class="glyphicon glyphicon-chevron-left">previous</i></a>
+    <a asp-action="Index" asp-route-page="@(Model.PageViewModel.PageNumber-1)" class="btn btn-outline-dark"><i class="glyphicon glyphicon-chevron-left">@Localizer["Previous"]</i></a>
 }
 @if (Model.PageViewModel.HasNextPage)
 {
-   <a asp-action="Index" asp-route-page="@(Model.PageViewModel.PageNumber+1)" class="btn btn-outline-dark"><i class="glyphicon glyphicon-chevron-right">next</i></a>  
+   <a asp-action="Index" asp-route-page="@(Model.PageViewModel.PageNumber+1)" class="btn btn-outline-dark"><i class="glyphicon glyphicon-chevron-right">@Localizer["Next"]</i></a>  
 }

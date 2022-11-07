@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -18,19 +20,19 @@
                         @if (User.Identity.IsAuthenticated)
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="ToDoTasks" asp-action="Index">All Tasks</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="ToDoTasks" asp-action="Index">@Localizer["AllTasks"]</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="ToDoTasks" asp-action="Create">Create task</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="ToDoTasks" asp-action="Create">@Localizer["CreateTask"]</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="ToDoTasks" asp-action="Filter" asp-route-Id="1">Your taken tasks</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="ToDoTasks" asp-action="Filter" asp-route-Id="1">@Localizer["UrTakenTasks"]</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="ToDoTasks" asp-action="Filter" asp-route-Id="2">Free tasks</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="ToDoTasks" asp-action="Filter" asp-route-Id="2">@Localizer["FreeTasks"]</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="ToDoTasks" asp-action="Filter" asp-route-Id="3">Your Created tasks</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="ToDoTasks" asp-action="Filter" asp-route-Id="3">@Localizer["UrCreatedTasks"]</a>
                             </li>
                         }
                         <li class="nav-item">
@@ -46,7 +48,7 @@
 
        <form method="post" asp-controller="Account" asp-action="LogOff">
 
-           <input type="submit" value="Выход" />
+           <input type="submit" value="@Localizer["Exit"]" />
 
        </form>
 
@@ -56,9 +58,9 @@
 
    {
 
-       <a asp-controller="Account" asp-action="Login">Вход</a>
+       <a asp-controller="Account" asp-action="Login">@Localizer["Login"]</a>
 
-       <a asp-controller="Account" asp-action="Register">Регистрация</a>
+       <a asp-controller="Account" asp-action="Register">@Localizer["Registration"]</a>
 
    }
 

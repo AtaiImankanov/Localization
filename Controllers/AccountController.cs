@@ -151,7 +151,7 @@ namespace LabInsta.Controllers
 
             await _signInManager.SignOutAsync();
 
-            return RedirectToAction("Index", "ToDoTasks");
+            return RedirectToAction("Home", "ToDoTasks");
 
         }
     }
