@@ -1,0 +1,66 @@
+﻿@model lavAspMvclast.Models.ToDoTask
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>ToDoTask</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Priority)
+        </dt>
+        <dd class = "col-sm-10">
+            @if (@Model.Priority == 1)
+                    {
+                       <p>low</p>
+                    }
+                    @if (@Model.Priority == 2)
+                    {
+                       <p>Mid</p>
+                    }
+                    @if (@Model.Priority == 3)
+                    {
+                       <p>High</p>
+                    }
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.DateCreated)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.DateCreated)
+        </dd>
+    </dl>
+    
+</div>
+<div>
+    @if (@Model.Status == 1) {
+        <a asp-action="Open" asp-route-id="@Model.Id">Open  |</a>
+        <a asp-action="Delete" asp-route-id="@Model.Id">Delete</a>
+          }
+          @if (@Model.Status == 2) {
+              <a asp-action="Take" asp-controller="ToDoTasks" asp-route-id="@Model.Id">Take  |</a> 
+        <a asp-action="Close" asp-route-id="@Model.Id">Close</a>
+          }
+          @if (@Model.Status == 3) {
+        <a asp-action="Delete" asp-route-id="@Model.Id">Delete</a>
+          }
+          @if (@Model.Status == 4) {
+         <a asp-action="Close" asp-route-id="@Model.Id">Close</a>
+          }
+</div>

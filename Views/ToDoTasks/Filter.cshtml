@@ -1,0 +1,52 @@
+﻿@model lavAspMvclast.ViewModels.TaskPageModel
+@{
+    ViewData["Title"] = "Filter";
+}
+
+<h1>Filter</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Description
+            </th>
+            <th>
+                DateCreated
+            </th>
+            <th>
+                Status
+            </th>
+            <th>
+               Priority
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.ToDoTasks) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateCreated)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Priority)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
